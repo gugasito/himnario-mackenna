@@ -1,0 +1,49 @@
+name: Web and catalog CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  web-and-catalog:
+    name: Web app and PDF catalog
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.x'
+
+      - name: Install Poppler tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y poppler-utils
+
+      - name: Install JavaScript dependencies
+        run: npm ci
+
+      - name: Run frontend tests
+        run: npm test
+
+      - name: Build and type-check web app
+        run: npm run check
+
+      - name: Validate PDF catalog
+        run: npm run catalog:check
+
+      - name: Test PDF import behavior
+        run: npm run catalog:test

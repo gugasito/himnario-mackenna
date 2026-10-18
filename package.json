@@ -1,0 +1,49 @@
+{
+  "name": "himnario-mackenna",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Himnario Mackenna · IEUCB Mackenna",
+  "scripts": {
+    "start": "ng serve --host 127.0.0.1 --port 4200",
+    "build": "ng build",
+    "test": "vitest run",
+    "check": "ng build && tsc --noEmit -p tsconfig.spec.json",
+    "catalog:check": "python3 scripts/validate-catalog.py",
+    "catalog:test": "python3 -m unittest scripts/test-import-hymns.py",
+    "cap:sync": "npm run build && cap sync",
+    "android": "cap open android",
+    "ios": "cap open ios"
+  },
+  "dependencies": {
+    "@angular/animations": "21.2.25",
+    "@angular/common": "21.2.25",
+    "@angular/compiler": "21.2.25",
+    "@angular/core": "21.2.25",
+    "@angular/forms": "21.2.25",
+    "@angular/platform-browser": "21.2.25",
+    "@angular/router": "21.2.25",
+    "@capacitor/android": "8.5.3",
+    "@capacitor/core": "8.5.3",
+    "@capacitor/ios": "8.5.3",
+    "@capacitor/preferences": "8.0.1",
+    "@ionic/angular": "9.0.8",
+    "ionicons": "8.0.13",
+    "rxjs": "7.8.2",
+    "tslib": "2.8.1"
+  },
+  "devDependencies": {
+    "@angular/build": "21.2.25",
+    "@angular/cli": "21.2.27",
+    "@angular/compiler-cli": "21.2.25",
+    "@capacitor/cli": "8.5.3",
+    "@types/node": "24.10.1",
+    "happy-dom": "20.8.9",
+    "typescript": "5.9.3",
+    "vitest": "4.1.12"
+  },
+  "overrides": {
+    "xcode": {
+      "uuid": "11.1.1"
+    }
+  }
+}

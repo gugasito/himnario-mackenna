@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Himnario Mackenna</string>
+    <string name="title_activity_main">Himnario Mackenna</string>
+    <string name="package_name">org.ucbmackenna.himnario</string>
+    <string name="custom_url_scheme">org.ucbmackenna.himnario</string>
+</resources>
