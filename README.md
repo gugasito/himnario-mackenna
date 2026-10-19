@@ -35,6 +35,7 @@ Consulta [Desarrollo](docs/desarrollo.md) para sincronizar y abrir los proyectos
 - [Diseño](docs/diseno.md): navegación, pantallas y criterios de accesibilidad.
 - [Hoja de ruta](docs/hoja-de-ruta.md): trabajo pendiente antes de una versión utilizable.
 - [Catálogo](docs/catalogo.md): contrato y procedencia de los himnos.
+- [Versiones de prueba](docs/releases.md): releases, builds de Actions, descargas y límites de firma.
 
 La fuente principal es el PDF de `data/source/`; el APK antiguo solo sirve para comparación. La extracción no sustituye la revisión de las letras. El proyecto de la web de la iglesia es fuente de solo lectura.
 

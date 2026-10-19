@@ -27,6 +27,13 @@ La web existente en `../mackenna-angular` es una fuente de contenido de solo lec
 - `public/pantallas.html` es una vista de revisión con tres rutas reales a 360 px; no forma parte de la navegación de la aplicación.
 - Referencias: `docs/decision-tecnica.md`, `docs/desarrollo.md`, `docs/diseno.md`, `docs/catalogo.md` y `docs/hoja-de-ruta.md`.
 
+## Releases automáticas
+
+- El usuario autorizó compilar Android e iOS al publicar releases y adjuntar los resultados en GitHub; no se publica en tiendas.
+- Android debe conservar una firma estable de esta nueva aplicación. Las claves se guardan como secretos de GitHub y en un respaldo privado fuera del repositorio; nunca se incluyen en archivos de compilación, logs ni artefactos.
+- El usuario confirmó que no tiene Apple Developer. La entrega iOS actual es para simulador de Mac; no presentarla como un IPA instalable en iPhone.
+- Compilar el commit exacto de la etiqueta de release, validar versiones y publicar los archivos solo después de que ambas plataformas hayan terminado correctamente.
+
 ## Calidad y colaboración
 
 Usar la habilidad disponible `codex-orchestrator` para implementar con responsables definidos y revisión del coordinador.
