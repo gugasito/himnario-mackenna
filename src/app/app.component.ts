@@ -16,7 +16,7 @@ import { PreferencesService } from './core/preferences.service';
           <img src="/brand/logo_mackenna_blanco.svg" alt="Iglesia IEUCB Mackenna" />
           <span><strong>Himnario</strong><small>IEUCB Mackenna</small></span>
         </a>
-        <span class="offline-note">Un canto para cada día</span>
+        <a class="settings-link" routerLink="/ajustes" routerLinkActive="active" ariaCurrentWhenActive="page" aria-label="Ajustes"><ion-icon name="settings-outline" aria-hidden="true"></ion-icon></a>
       </header>
       <main id="main-content" class="main-content">
         @if (hymnal.status() === 'loading') {
@@ -27,12 +27,11 @@ import { PreferencesService } from './core/preferences.service';
           <router-outlet (activate)="focusPageHeading()" />
         }
       </main>
-      @if (hymnal.status() === 'ready' && !isReader()) {
+      @if (hymnal.status() === 'ready') {
         <nav class="tabbar" aria-label="Navegación principal">
-          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" aria-label="Inicio"><ion-icon name="home-outline"></ion-icon><span>Inicio</span></a>
-          <a routerLink="/himnos" routerLinkActive="active" aria-label="Himnos"><ion-icon name="book-outline"></ion-icon><span>Himnos</span></a>
-          <a routerLink="/favoritos" routerLinkActive="active" aria-label="Favoritos"><ion-icon name="heart-outline"></ion-icon><span>Favoritos</span></a>
-          <a routerLink="/ajustes" routerLinkActive="active" aria-label="Ajustes"><ion-icon name="settings-outline"></ion-icon><span>Ajustes</span></a>
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" ariaCurrentWhenActive="page" aria-label="Inicio"><ion-icon name="home-outline" aria-hidden="true"></ion-icon><span>Inicio</span></a>
+          <a routerLink="/himnos" class="nav-featured" [class.active]="isCatalogOrReader()" [attr.aria-current]="isCatalogOrReader() ? 'page' : null" aria-label="Himnos"><span class="nav-featured-disc"><ion-icon name="book-outline" aria-hidden="true"></ion-icon></span><span>Himnos</span></a>
+          <a routerLink="/favoritos" routerLinkActive="active" ariaCurrentWhenActive="page" aria-label="Favoritos"><ion-icon name="heart-outline" aria-hidden="true"></ion-icon><span>Favoritos</span></a>
         </nav>
       }
     </div>
@@ -49,6 +48,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void { void this.initialize(); }
   isReader(): boolean { return this.router.url.startsWith('/himno/'); }
+  isCatalogOrReader(): boolean { return this.router.url.startsWith('/himnos') || this.isReader(); }
   focusPageHeading(): void {
     requestAnimationFrame(() => {
       const heading = document.querySelector<HTMLElement>('#main-content h1');
