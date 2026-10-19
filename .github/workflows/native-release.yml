@@ -196,7 +196,7 @@ jobs:
           app="$RUNNER_TEMP/ios-derived/Build/Products/Release-iphonesimulator/App.app"
           python3 scripts/release/verify-ios-app.py "$app" "$RELEASE_VERSION_NAME" "$RELEASE_VERSION_CODE"
           executable=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$app/Info.plist")
-          lipo -verify_arch arm64 "$app/$executable"
+          lipo "$app/$executable" -verify_arch arm64
           mkdir -p release-assets
           ditto -c -k --sequesterRsrc --keepParent "$app" release-assets/himnario-mackenna-ios-simulator.zip
           shasum -a 256 release-assets/himnario-mackenna-ios-simulator.zip

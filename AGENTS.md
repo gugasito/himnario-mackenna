@@ -23,7 +23,7 @@ La web existente en `../mackenna-angular` es una fuente de contenido de solo lec
 - La extracción es un borrador pendiente de revisión editorial. No inventar categorías, autores ni letras.
 - Favoritos y preferencias locales con Capacitor Preferences. No se necesita cuenta ni servidor para el alcance inicial.
 - Comandos verificados: `npm ci` (instalación reproducible), `npm start` (puerto 4200), `npm run check` (compilación web y tipos), `npm test` (5 pruebas), `npm run catalog:check` y `npm run catalog:test` (8 pruebas del importador).
-- `npm run cap:sync` compila la web y sincroniza Android e iOS. La sincronización se verificó; no hay compilación nativa ni pruebas en dispositivos porque faltan Xcode completo y Android SDK.
+- `npm run cap:sync` compila la web y sincroniza Android e iOS. GitHub Actions ya compiló Android firmado y la app para iOS Simulator; las pruebas en dispositivos físicos siguen pendientes. El entorno local carece de Xcode completo y Android SDK.
 - `public/pantallas.html` es una vista de revisión con tres rutas reales a 360 px; no forma parte de la navegación de la aplicación.
 - Referencias: `docs/decision-tecnica.md`, `docs/desarrollo.md`, `docs/diseno.md`, `docs/catalogo.md` y `docs/hoja-de-ruta.md`.
 
