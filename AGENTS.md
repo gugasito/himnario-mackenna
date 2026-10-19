@@ -33,6 +33,7 @@ La web existente en `../mackenna-angular` es una fuente de contenido de solo lec
 - Android debe conservar una firma estable de esta nueva aplicación. Las claves se guardan como secretos de GitHub y en un respaldo privado fuera del repositorio; nunca se incluyen en archivos de compilación, logs ni artefactos.
 - El usuario confirmó que no tiene Apple Developer. La entrega iOS actual es para simulador de Mac; no presentarla como un IPA instalable en iPhone.
 - Compilar el commit exacto de la etiqueta de release, validar versiones y publicar los archivos solo después de que ambas plataformas hayan terminado correctamente.
+- El run `39193984202` verificó la publicación completa de `v0.1.0-rc.1`: APK/AAB firmados, ZIP de iOS Simulator, checksums y datos del build. Los tres paquetes descargados conservan el catálogo de 385 himnos sin cambios. Compilar correctamente no sustituye las pruebas en dispositivos físicos.
 
 ## Calidad y colaboración
 

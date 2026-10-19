@@ -18,13 +18,13 @@ Usa Node.js 24.14.0 según `.nvmrc`. Desde la raíz instala dependencias con `np
 
 Los comandos del catálogo (`catalog:check` y `catalog:test`) requieren Python 3; para importar o regenerar el catálogo se necesita `pdftotext` de Poppler. El servidor, la compilación web y las pruebas de aplicación requieren Node y npm.
 
-El flujo habitual es editar Angular compartido, revisar en navegador y luego ejecutar `npm run cap:sync` para probar en Android Studio o Xcode. La sincronización prepara los recursos nativos; no equivale a compilar, firmar ni verificar en un dispositivo. La sincronización para Android e iOS pasó; la compilación nativa y las pruebas en dispositivos siguen pendientes.
+El flujo habitual es editar Angular compartido, revisar en navegador y luego ejecutar `npm run cap:sync` para probar en Android Studio o Xcode. La sincronización prepara los recursos nativos; no equivale a compilar, firmar ni verificar en un dispositivo. El [run 39193984202 de GitHub Actions](https://github.com/gugasito/himnario-mackenna/actions/runs/39193984202) completó validaciones, build Android y build iOS Simulator, y adjuntó los cinco assets a la [release v0.1.0-rc.1](https://github.com/gugasito/himnario-mackenna/releases/tag/v0.1.0-rc.1). Se comprobaron los checksums y que las tres aplicaciones incluyan el catálogo de 385 himnos. Las pruebas en dispositivos físicos siguen pendientes.
 
 Los cambios específicos de plataforma deben limitarse a funciones que lo requieran. Compartir la interfaz reduce duplicación, pero cada plataforma requiere pruebas propias de navegación, permisos, áreas seguras, almacenamiento y compilación/firma. Una prueba en navegador no demuestra que la aplicación nativa compile.
 
 ## Requisitos nativos
 
-Para ejecutar en dispositivos se necesitan Android Studio y el SDK Android; para iOS, macOS con Xcode. Sigue los requisitos vigentes de [configuración de entorno de Capacitor](https://capacitorjs.com/docs/getting-started/environment-setup). Aunque la sincronización de ambos proyectos pasó, todavía no se ha verificado una compilación nativa.
+Para ejecutar en dispositivos se necesitan Android Studio y el SDK Android; para iOS, macOS con Xcode. Sigue los requisitos vigentes de [configuración de entorno de Capacitor](https://capacitorjs.com/docs/getting-started/environment-setup). La release enlazada arriba ofrece APK/AAB Android y la app iOS Simulator empaquetada. Las pruebas de instalación y funcionamiento en dispositivos Android e iOS físicos siguen pendientes.
 
 El catálogo se incluye en la aplicación para lectura y búsqueda sin conexión. Preferencias y favoritos se guardan localmente con Capacitor Preferences. El alcance inicial no incluye servidor, autenticación ni sincronización entre dispositivos.
 
