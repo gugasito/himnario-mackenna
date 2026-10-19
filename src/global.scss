@@ -162,8 +162,8 @@ ion-icon { font-size: 1.2em; }
 .reader-content h1 { margin: 12px auto 19px; color: var(--text); font: 400 clamp(29px, 6vw, 42px)/1.18 Georgia, serif; letter-spacing: -.025em; }
 .reader-rule { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0 auto 38px; color: var(--gold); font-size: 10px; }
 .reader-rule span { width: 46px; height: 1px; background: var(--border); }
-.stanza { margin: 0 auto 31px; padding: 0 8px; color: var(--text); font: var(--reader-font-size)/1.55 Georgia, "Times New Roman", serif; }
-.stanza-label { display: inline-block; margin-bottom: 11px; color: var(--text-muted); font: 700 9px/1 sans-serif; letter-spacing: .18em; }
+.stanza { margin: 0 auto 31px; padding: 0 8px; color: var(--text); text-align: left; font-family: var(--reader-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif); font-size: var(--reader-font-size); line-height: 1.55; }
+.stanza-label { display: block; margin-bottom: 11px; color: var(--text-muted); text-align: center; font: 700 9px/1 sans-serif; letter-spacing: .18em; }
 .stanza-lines p { margin: 0; }
 .stanza.chorus { padding: 19px 14px 22px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); color: var(--wine-dark); }
 .source-page { display: block; margin-top: 34px; color: var(--text-muted); font-size: 10px; }
@@ -188,6 +188,11 @@ ion-icon { font-size: 1.2em; }
 .font-control { display: flex; align-items: center; justify-content: center; gap: 28px; margin: 16px 0 8px; }
 .font-preview { min-width: 60px; text-align: center; font-family: Georgia, serif; }
 .settings-section input[type=range] { width: 100%; accent-color: var(--wine); }
+.reading-font-options { display: grid; gap: 8px; margin-top: 14px; }
+.reading-font-option { display: flex; min-height: 48px; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 7px; background: var(--card-bg); color: var(--text); text-align: left; font-size: 13px; cursor: pointer; }
+.reading-font-option.selected { border-color: var(--wine); background: var(--rose); color: var(--wine-dark); }
+.font-option-preview { flex: none; font-size: 22px; }
+.font-source-note { margin-top: 10px; line-height: 1.5; }
 .theme-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
 .theme-option { position: relative; display: flex; min-height: 80px; flex-direction: column; justify-content: center; align-items: center; gap: 8px; border: 1px solid var(--border); border-radius: 7px; background: var(--card-bg); color: var(--text-muted); font-size: 12px; cursor: pointer; }
 .theme-option > ion-icon:first-child { font-size: 20px; }

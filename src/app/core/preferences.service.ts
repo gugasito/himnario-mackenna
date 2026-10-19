@@ -2,14 +2,20 @@ import { Injectable, signal } from '@angular/core';
 import { Preferences } from '@capacitor/preferences';
 
 export type ThemeChoice = 'system' | 'light' | 'dark';
+export type ReadingFont = 'system' | 'serif';
+const READING_FONT_FAMILIES: Readonly<Record<ReadingFont, string>> = {
+  system: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif',
+  serif: 'Georgia, "Times New Roman", serif'
+};
 export interface UserPreferences {
   readonly favorites: readonly string[];
   readonly recent: readonly string[];
   readonly fontSize: number;
   readonly theme: ThemeChoice;
+  readonly readingFont: ReadingFont;
 }
 
-const DEFAULTS: UserPreferences = { favorites: [], recent: [], fontSize: 24, theme: 'system' };
+const DEFAULTS: UserPreferences = { favorites: [], recent: [], fontSize: 24, theme: 'system', readingFont: 'system' };
 
 @Injectable({ providedIn: 'root' })
 export class PreferencesService {
@@ -25,7 +31,13 @@ export class PreferencesService {
       const { value } = await Preferences.get({ key: 'himnario.preferences.v1' });
       if (value) {
         const saved = JSON.parse(value) as Partial<UserPreferences>;
-        this.value.set({ ...DEFAULTS, ...saved, favorites: Array.isArray(saved.favorites) ? saved.favorites : [], recent: Array.isArray(saved.recent) ? saved.recent : [] });
+        this.value.set({
+          ...DEFAULTS,
+          ...saved,
+          favorites: Array.isArray(saved.favorites) ? saved.favorites : [],
+          recent: Array.isArray(saved.recent) ? saved.recent : [],
+          readingFont: saved.readingFont === 'system' || saved.readingFont === 'serif' ? saved.readingFont : DEFAULTS.readingFont
+        });
       }
     } catch { this.persistenceWarning.set(true); }
     this.applyTheme();
@@ -46,6 +58,8 @@ export class PreferencesService {
   async remember(id: string): Promise<void> {
     await this.patch({ recent: [id, ...this.value().recent.filter((item) => item !== id)].slice(0, 6) });
   }
+
+  readingFontFamily(font: ReadingFont = this.value().readingFont): string { return READING_FONT_FAMILIES[font]; }
 
   private applyTheme(): void {
     const choice = this.value().theme;

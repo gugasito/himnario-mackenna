@@ -19,12 +19,13 @@ describe('PreferencesService', () => {
     const first = new PreferencesService();
     await first.load();
     await first.toggleFavorite('10-a');
-    await first.patch({ fontSize: 30, theme: 'dark' });
+    await first.patch({ fontSize: 30, theme: 'dark', readingFont: 'serif' });
     await first.remember('10-a');
 
     const second = new PreferencesService();
     await second.load();
-    expect(second.value()).toEqual({ favorites: ['10-a'], recent: ['10-a'], fontSize: 30, theme: 'dark' });
+    expect(second.value()).toEqual({ favorites: ['10-a'], recent: ['10-a'], fontSize: 30, theme: 'dark', readingFont: 'serif' });
+    expect(second.readingFontFamily()).toBe('Georgia, "Times New Roman", serif');
     expect(document.documentElement.classList.contains('theme-dark')).toBe(true);
   });
 
@@ -35,5 +36,21 @@ describe('PreferencesService', () => {
     await service.patch({ fontSize: 26 });
     expect(service.value().fontSize).toBe(26);
     expect(service.persistenceWarning()).toBe(true);
+  });
+
+  it('migrates stored preferences without a reading font to the system font', async () => {
+    stored = JSON.stringify({ favorites: ['10-a'], recent: ['10-a'], fontSize: 28, theme: 'light' });
+    const service = new PreferencesService();
+    await service.load();
+    expect(service.value().readingFont).toBe('system');
+    expect(service.readingFontFamily()).toBe('-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif');
+  });
+
+  it('replaces an unknown stored reading font with the system font', async () => {
+    stored = JSON.stringify({ readingFont: 'fantasy' });
+    const service = new PreferencesService();
+    await service.load();
+    expect(service.value().readingFont).toBe('system');
+    expect(service.readingFontFamily()).toBe('-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif');
   });
 });

@@ -8,7 +8,7 @@ def releaseEnvironment = [
 ]
 def releaseSigningValues = releaseEnvironment.values().findAll { it }
 def requestedReleaseBuild = gradle.startParameter.taskNames.any { it.toLowerCase().contains('release') }
-def releaseVersionName = System.getenv('ANDROID_VERSION_NAME') ?: '1.0'
+def releaseVersionName = System.getenv('ANDROID_VERSION_NAME') ?: '0.1.0'
 def releaseVersionCode = System.getenv('ANDROID_VERSION_CODE') ?: '1'
 
 if (requestedReleaseBuild && releaseSigningValues.size() != releaseEnvironment.size()) {
